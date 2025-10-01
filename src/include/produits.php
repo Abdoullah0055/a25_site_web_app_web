@@ -6,46 +6,29 @@
         <?php
         include_once "Algos.php";
 
+        // Récupérer les annonces depuis le fichier csv
 
-        // TEST POUR TROUVER OU EST L'ERREUR SINON ENVOYER MESSAGE AU PROF.
-        // //TRouver le bon chemin:
-        // if(file_exists("fichiers_information/annonces.csv"))
-        //     echo "Le premier chemin est bon.";
+        $cheminFichier = "C:\Automne_2025\a25_site_web_app_web\src\BD_CSV\informations_annonces.csv";
 
-        // if(file_exists("../fichiers_information/annonces.csv"))
-        //     echo "Le deuxieme chemin est bon.";
-
-        // if(file_exists("../../fichiers_information/annonces.csv"))
-        //     echo "Le troisieme chemin est bon.";
-
- 
-        // $chemin = "fichiers_information/annonces.csv";
-        $fichier = "https://prog101.com/cours/kb9/bd/annonces.csv";
-        $donnéesFichier = fopen($fichier, "r");
-        if ($donnéesFichier === false) {
-            echo "Erreur lors de la lecture du fichier.";
-            exit;
-        } else {
-            $delimiteur = "|";
-            $maxLongueur = 1000;
-
+        if (file_exists($cheminFichier) && fopen($cheminFichier, "a") !== false) {
             $titre = $description = $prix = $negociable = $image = $vendeur = "";
 
-            while (($ligne = fgetcsv($donnéesFichier, $maxLongueur, $delimiteur, "\"", "\\")) !== false) {
+            //Publier les annonces les plus nouvelles en premier dans la page web.
+            $lignes = file($cheminFichier, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            $lignes = array_reverse($lignes);
 
-                $ligne = array_map("strip_tags", $ligne);
-
-                $titre = $ligne[0];
-                $description = $ligne[1];
-                $prix = $ligne[2];
-                $negociable = $ligne[3];
-                $image = $ligne[4];
-                $vendeur = $ligne[5];
-
+            foreach ($lignes as $ln) {
+                $ligneCSV = str_getcsv($ln, ";");
+                $titre = $ligneCSV[0];
+                $description = $ligneCSV[1];
+                $prix = $ligneCSV[2];
+                $negociable = $ligneCSV[3];
+                $image = $ligneCSV[4];
+                $vendeur = $ligneCSV[5];
                 creerPoste($titre, $description, $prix, $negociable, $image, $vendeur);
             }
-            fclose($donnéesFichier);
-        }
+        } else
+            echo "Erreur durant l'ouverture du fichier.";
         ?>
 
     </div>

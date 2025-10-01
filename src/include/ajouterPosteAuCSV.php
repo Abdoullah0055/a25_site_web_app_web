@@ -1,0 +1,30 @@
+<?php
+// Récuperer les éléments du formulaire
+
+$cheminFichier = "C:\Automne_2025\a25_site_web_app_web\src\BD_CSV\informations_annonces.csv";
+$fichier = @fopen($cheminFichier, "a");
+
+if ($fichier === false) {
+    exit("Probleme lors de l'ouverture du fichier.");
+}
+
+$titre = $description = $prix = $negociable = $image = $vendeur = "";
+
+if (!empty($_POST["titre"]) && !empty($_POST["description"]) && !empty($_POST["prix"]) && !empty($_POST["negociable"]) && !empty($_POST["image"]) && !empty($_POST["vendeur"])) {
+    $titre = $_POST["titre"];
+    $description = $_POST["description"];
+    $prix = $_POST["prix"];
+    $negociable = $_POST["negociable"];
+    $image = $_POST["image"];
+    $vendeur = $_POST["vendeur"];
+
+    // Envoyer les données dans le fichier csv
+
+    $chaine = $titre . ";" . $description . ";" . $prix . ";" . $negociable . ";" . $image . ";" . $vendeur . "\n";
+    fwrite($fichier, $chaine);
+    echo "Données enregistrées avec succès. Merci d'avoir placé votre confiance en Abdou's Market.";
+} else 
+    echo "Erreur: Tous les champs doivent être rempli!";
+
+fclose($fichier);
+?>
