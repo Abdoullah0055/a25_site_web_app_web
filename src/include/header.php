@@ -1,7 +1,7 @@
 <!-- Bannière Header -->
 <div class="absolute inset-0 bg-blacklux bg-opacity-60"></div>
 
-<div class="relative max-w-6xl mx-auto px-6 py-20 text-center">
+<div class="relative max-w-6xl mx-auto px-6 pt-20 pb-4 text-center">
   <h2 class="text-3xl md:text-4xl font-semibold text-light">À une recherche du coup de coeur</h2>
 
   <!-- Search bar -->
@@ -19,4 +19,9 @@
       </button>
     </div>
   </form>
+
+  <!-- Bouton Publier -->
+  <div class="mt-10">
+    <?php include "include/boutonPublier.php"; ?>
+  </div>
 </div>
