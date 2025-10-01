@@ -33,6 +33,8 @@
 
             while (($ligne = fgetcsv($donnéesFichier, $maxLongueur, $delimiteur, "\"", "\\")) !== false) {
 
+                $ligne = array_map("strip_tags", $ligne);
+
                 $titre = $ligne[0];
                 $description = $ligne[1];
                 $prix = $ligne[2];
