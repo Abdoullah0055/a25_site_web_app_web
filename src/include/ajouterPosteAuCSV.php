@@ -4,13 +4,19 @@
 $cheminFichier = "C:/Automne_2025/a25_site_web_app_web/src/BD_CSV/informations_annonces.csv";
 $fichier = @fopen($cheminFichier, "a");
 
-if ($fichier === false) {
-    exit("Probleme lors de l'ouverture du fichier.");
+// Vérifier si le fichier existe
+if (!file_exists($cheminFichier)) {
+    exit("Erreur: Le fichier n'existe pas à l'emplacement: " . $cheminFichier);
+}
+
+// Vérifier si le fichier est accessible en écriture
+if (!is_writable($cheminFichier)) {
+    exit("Erreur: Le fichier n'est pas accessible en écriture. Vérifiez les permissions.");
 }
 
 $titre = $description = $prix = $negociable = $image = $vendeur = "";
 
-if (!empty($_POST["titre"]) && !empty($_POST["description"]) && !empty($_POST["prix"]) && !empty($_POST["negociable"]) && !empty($_POST["image"]) && !empty($_POST["vendeur"])) {
+if (isset($_POST["titre"], $_POST["description"], $_POST["prix"], $_POST["negociable"], $_POST["image"], $_POST["vendeur"])) {
     $titre = $_POST["titre"];
     $description = $_POST["description"];
     $prix = $_POST["prix"];
