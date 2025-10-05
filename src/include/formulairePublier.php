@@ -2,7 +2,7 @@
 <div class="max-w-3xl mx-auto px-6 py-12">
     <h1 class="text-3xl font-semibold mb-8 text-anthracite text-center">Publier un nouvel article</h1>
 
-    <form method="POST" action="../BD_CSV/informations_annonces.csv" class="bg-anthracite p-8 rounded-xl shadow-md">
+    <form action="include/ajouterPosteAuCSV.php" method="POST" class="bg-anthracite p-8 rounded-xl shadow-md">
         <!-- Titre -->
         <div class="mb-6">
             <label for="titre" class="block text-light font-semibold mb-2">Titre</label>

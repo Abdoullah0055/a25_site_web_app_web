@@ -8,7 +8,7 @@
 
         // Récupérer les annonces depuis le fichier csv
 
-        $cheminFichier = "C:/Automne_2025/a25_site_web_app_web/src/BD_CSV/informations_annonces.csv";
+        $cheminFichier = __DIR__ . "/../BD_CSV/informations_annonces.csv";
 
         if (file_exists($cheminFichier)) {
             //Publier les annonces les plus nouvelles en premier dans la page web.

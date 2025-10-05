@@ -1,7 +1,7 @@
 <?php
 // Récuperer les éléments du formulaire
 
-$cheminFichier = "C:/Automne_2025/a25_site_web_app_web/src/BD_CSV/informations_annonces.csv";
+$cheminFichier = __DIR__ . "/../BD_CSV/informations_annonces.csv";
 $fichier = @fopen($cheminFichier, "a");
 
 // Vérifier si le fichier existe
@@ -33,3 +33,4 @@ if (isset($_POST["titre"], $_POST["description"], $_POST["prix"], $_POST["negoci
     echo "Erreur: Tous les champs doivent être rempli!";
 
 fclose($fichier);
+?>
