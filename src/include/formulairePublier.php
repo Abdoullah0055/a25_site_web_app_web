@@ -6,21 +6,21 @@
         <!-- Titre -->
         <div class="mb-6">
             <label for="titre" class="block text-light font-semibold mb-2">Titre</label>
-            <input type="text" id="titre" name="titre" required
+            <input type="text" id="titre" name="titre" required minlength="1" maxlength="50"
                 class="w-full p-3 rounded border border-silver focus:outline-none focus:ring-2 focus:ring-silver">
         </div>
 
         <!-- Description -->
         <div class="mb-6">
             <label for="description" class="block text-light font-semibold mb-2">Description</label>
-            <textarea id="description" name="description" rows="4" required
+            <textarea id="description" name="description" rows="4" required minlength="10" maxlength="50"
                 class="w-full p-3 rounded border border-silver focus:outline-none focus:ring-2 focus:ring-silver"></textarea>
         </div>
 
         <!-- Prix -->
         <div class="mb-6">
             <label for="prix" class="block text-light font-semibold mb-2">Prix</label>
-            <input type="number" id="prix" name="prix" step="0.01" required
+            <input type="number" id="prix" name="prix" step="0.01" required min="0" max="1000000"
                 class="w-full p-3 rounded border border-silver focus:outline-none focus:ring-2 focus:ring-silver">
         </div>
 
@@ -40,7 +40,7 @@
         <!-- URL de l'image -->
         <div class="mb-6">
             <label for="image" class="block text-light font-semibold mb-2">URL de l'image</label>
-            <input type="url" id="image" name="image" required
+            <input type="url" id="image" name="image" 
                 class="w-full p-3 rounded border border-silver focus:outline-none focus:ring-2 focus:ring-silver"
                 placeholder="https://exemple.com/monimage.jpg">
         </div>
@@ -48,7 +48,7 @@
         <!-- Pseudonyme du vendeur -->
         <div class="mb-6">
             <label for="vendeur" class="block text-light font-semibold mb-2">Pseudonyme du vendeur</label>
-            <input type="text" id="vendeur" name="vendeur" required
+            <input type="text" id="vendeur" name="vendeur" required minlength="2" maxlength="20"
                 class="w-full p-3 rounded border border-silver focus:outline-none focus:ring-2 focus:ring-silver">
         </div>
 

@@ -16,12 +16,12 @@ if (!is_writable($cheminFichier)) {
 
 $titre = $description = $prix = $negociable = $image = $vendeur = "";
 
-if (isset($_POST["titre"], $_POST["description"], $_POST["prix"], $_POST["negociable"], $_POST["image"], $_POST["vendeur"])) {
+if (isset($_POST["titre"], $_POST["description"], $_POST["prix"], $_POST["negociable"], $_POST["vendeur"])) {
     $titre = $_POST["titre"];
     $description = $_POST["description"];
     $prix = $_POST["prix"];
     $negociable = $_POST["negociable"];
-    $image = $_POST["image"];
+    isset($_POST["image"]) ? $image = $_POST["image"] : $image = "https://media.istockphoto.com/id/1415203156/vector/error-page-page-not-found-vector-icon-in-line-style-design-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=RuQ_sn-RjAVNKOmARuSf1oXFkVn3OMKeqO5vw8GYoS8=";
     $vendeur = $_POST["vendeur"];
 
     // Envoyer les données dans le fichier csv
