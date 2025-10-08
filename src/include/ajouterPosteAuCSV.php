@@ -21,12 +21,12 @@ if (isset($_POST["titre"], $_POST["description"], $_POST["prix"], $_POST["negoci
 
     //Verification longeuur + Nettoyage 
     //Titre
-    if (strlen($_POST["titre"]) >= 1 &&  strlen($_POST["titre"]) <= 50){
+    if (strlen($_POST["titre"]) >= 1 &&  strlen($_POST["titre"]) <= 50) {
         $titre = filter_var($_POST["titre"], FILTER_SANITIZE_SPECIAL_CHARS);
         $titre = trim($titre);
     }
     //Description
-    if (strlen($_POST["description"]) >= 10 &&  strlen($_POST["description"]) <= 500){
+    if (strlen($_POST["description"]) >= 10 &&  strlen($_POST["description"]) <= 500) {
         $description = filter_var($_POST["description"], FILTER_SANITIZE_SPECIAL_CHARS);
         $description = trim($description);
     }
@@ -50,7 +50,6 @@ if (isset($_POST["titre"], $_POST["description"], $_POST["prix"], $_POST["negoci
     $titre = str_replace(";", ",", $titre);
     $description = str_replace([";", "\n"], [",", " "], $description);
     $vendeur = str_replace(";", ",", $vendeur);
-
 
     //Validation url de l'image
     if (isset($_POST["image"]) && !empty($_POST["image"])) {
