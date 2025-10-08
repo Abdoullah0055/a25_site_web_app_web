@@ -13,7 +13,7 @@
         <!-- Description -->
         <div class="mb-6">
             <label for="description" class="block text-light font-semibold mb-2">Description</label>
-            <textarea id="description" name="description" rows="4" required minlength="10" maxlength="50"
+            <textarea id="description" name="description" rows="4" required minlength="10" maxlength="500"
                 class="w-full p-3 rounded border border-silver focus:outline-none focus:ring-2 focus:ring-silver"></textarea>
         </div>
 
