@@ -28,9 +28,10 @@
 </head>
 <!-- 
 TO DO: 
-- Changer le chemin du fichier pour ne plus avoir d'espaces dans l'URL.
+- Changer le chemin du fichier pour ne plus avoir d'espaces dans l'URL. -- FAIT!
 -  
 -->
+
 <body class="bg-light text-anthracite font-sans m-0 p-0">
 
   <!-- Header -->

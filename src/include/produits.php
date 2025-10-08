@@ -25,8 +25,7 @@
                     $image = $ligneCSV[4];
                     $vendeur = $ligneCSV[5];
                     creerPoste($titre, $description, $prix, $negociable, $image, $vendeur);
-                }
-                else if(count($ligneCSV) == 5){
+                } else if (count($ligneCSV) == 5) {
                     $titre = $ligneCSV[0];
                     $description = $ligneCSV[1];
                     $prix = $ligneCSV[2];
@@ -34,8 +33,7 @@
                     $image = "https://media.istockphoto.com/id/1415203156/vector/error-page-page-not-found-vector-icon-in-line-style-design-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=RuQ_sn-RjAVNKOmARuSf1oXFkVn3OMKeqO5vw8GYoS8=";
                     $vendeur = $ligneCSV[4];
                     creerPoste($titre, $description, $prix, $negociable, $image, $vendeur);
-                }
-                else {
+                } else {
                     // Gérer le cas où la ligne n'a pas le bon nombre de champs
                     echo "<p class='text-red-500'>Erreur: Ligne de données invalide dans le fichier CSV.</p>";
                 }
