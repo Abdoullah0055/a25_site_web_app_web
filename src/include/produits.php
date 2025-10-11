@@ -4,7 +4,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
         <?php
-        include_once "Algos.php";
+        include "Algos.php";
 
         // Récupérer les annonces depuis le fichier csv
 

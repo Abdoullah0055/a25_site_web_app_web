@@ -1,13 +1,11 @@
 <?php
 // Récuperer les éléments du formulaire
-
 $cheminFichier = __DIR__ . "/../BD_CSV/informations_annonces.csv";
 
 // Vérifier si le fichier existe
 if (!file_exists($cheminFichier)) {
     exit("Erreur: Le fichier n'existe pas à l'emplacement: " . $cheminFichier);
 }
-
 // Vérifier si le fichier est accessible en écriture
 if (!is_writable($cheminFichier)) {
     exit("Erreur: Le fichier n'est pas accessible en écriture. Vérifiez les permissions.");
@@ -15,25 +13,28 @@ if (!is_writable($cheminFichier)) {
 
 $fichier = @fopen($cheminFichier, "a");
 
+
+//Assignation des variables + Nettoyage + Validation
 $titre = $description = $prix = $negociable = $image = $vendeur = "";
 $chaine = "";
+
 if (isset($_POST["titre"], $_POST["description"], $_POST["prix"], $_POST["negociable"], $_POST["vendeur"])) {
 
     //Verification longeuur + Nettoyage 
     //Titre
     if (strlen($_POST["titre"]) >= 1 &&  strlen($_POST["titre"]) <= 50) {
         $titre = filter_var($_POST["titre"], FILTER_SANITIZE_SPECIAL_CHARS);
-        $titre = trim($titre);
+        $titre = htmlspecialchars(trim($titre), ENT_QUOTES);
     }
     //Description
     if (strlen($_POST["description"]) >= 10 &&  strlen($_POST["description"]) <= 500) {
         $description = filter_var($_POST["description"], FILTER_SANITIZE_SPECIAL_CHARS);
-        $description = trim($description);
+        $description = htmlspecialchars(trim($description), ENT_QUOTES);
     }
     //Vendeur
     if (strlen($_POST["vendeur"]) >= 2 &&  strlen($_POST["vendeur"]) <= 20) {
         $vendeur = filter_var($_POST["vendeur"], FILTER_SANITIZE_SPECIAL_CHARS);
-        $vendeur = trim($vendeur);
+        $vendeur = htmlspecialchars(trim($vendeur), ENT_QUOTES);
     }
 
     //Verification + Nettoyage Prix
