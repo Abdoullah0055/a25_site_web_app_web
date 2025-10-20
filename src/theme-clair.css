@@ -1,0 +1,50 @@
+/* Couleurs principales pour le thème clair */
+:root {
+    --color-light: #F5F5F5;      /* fond clair */
+    --color-silver: #C0C0C0;     /* accents métalliques */
+    --color-anthracite: #2E2E2E; /* gris foncé élégant */
+    --color-blacklux: #1B1B1B;   /* noir profond */
+}
+
+/* Body et texte principal */
+body {
+    background-color: var(--color-light);
+    color: var(--color-anthracite);
+}
+
+/* Navigation */
+nav {
+    background-color: var(--color-anthracite);
+    border-color: var(--color-silver);
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-blacklux);
+    border-color: var(--color-silver);
+}
+
+/* Titres principaux */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-anthracite);
+}
+
+/* Labels et textes des formulaires */
+label, span {
+    color: var(--color-light);
+}
+
+/* Boutons */
+button {
+    background-color: var(--color-anthracite);
+    color: var(--color-light);
+    border: none;
+}
+
+/* Liens et hover */
+a {
+    color: var(--color-anthracite);
+}
+a:hover {
+    opacity: 0.8;
+}
