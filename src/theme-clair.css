@@ -1,50 +1,174 @@
-/* Couleurs principales pour le thème clair */
+/* ===== Thème Clair Abdou's Market - Dégradé doux ===== */
 :root {
-    --color-light: #F5F5F5;      /* fond clair */
-    --color-silver: #C0C0C0;     /* accents métalliques */
-    --color-anthracite: #2E2E2E; /* gris foncé élégant */
-    --color-blacklux: #1B1B1B;   /* noir profond */
+    --dark: #1B1B1B;       /* texte sombre / accents */
+    --gray: #A0A0A0;       /* boutons, accents */
+    --light: #F5F5F5;      /* cartes, nav */
+    --white: #FFFFFF;       /* super clair / overlays */
 }
 
-/* Body et texte principal */
+/* Background global */
 body {
-    background-color: var(--color-light);
-    color: var(--color-anthracite);
+    background: linear-gradient(135deg, #EDEDE9, #F5EBE0, #E3D5CA);
+    color: var(--dark);
+    font-family: 'Inter', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* Navigation */
-nav {
-    background-color: var(--color-anthracite);
-    border-color: var(--color-silver);
-}
-
-/* Footer */
-footer {
-    background-color: var(--color-blacklux);
-    border-color: var(--color-silver);
-}
-
-/* Titres principaux */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--color-anthracite);
-}
-
-/* Labels et textes des formulaires */
-label, span {
-    color: var(--color-light);
-}
-
-/* Boutons */
-button {
-    background-color: var(--color-anthracite);
-    color: var(--color-light);
-    border: none;
-}
-
-/* Liens et hover */
 a {
-    color: var(--color-anthracite);
+    color: var(--dark);
+    transition: color 0.3s;
 }
-a:hover {
-    opacity: 0.8;
+
+nav {
+    background-color: var(--light);
+    border-bottom: 1px solid var(--gray);
+}
+
+footer {
+    background-color: var(--white);
+    border-top: 1px solid var(--gray);
+}
+
+button, input, textarea {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+button {
+    background-color: var(--gray);
+    color: var(--light);
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+input, textarea {
+    background-color: var(--white);
+    color: var(--dark);
+    border: 1px solid var(--gray);
+}
+
+input::placeholder {
+    color: var(--gray);
+}
+
+/* Sections principales (Catégories, Produits) */
+section {
+    padding: 2rem 0;
+}
+
+/* Cartes à l'intérieur des sections */
+section .group, .section .card, .grid div {
+    background-color: var(--white);
+    color: var(--dark);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+section h2, section h3 {
+    color: var(--dark);
+}
+
+section button {
+    background-color: var(--gray);
+    color: var(--light);
+}
+
+section button:hover {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+/* Overlays sur images */
+.overlay-light {
+    background-color: rgba(255,255,255,0.6);
+}
+
+/* Header et bannière */
+header {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: #FFFFFF; /* texte blanc dans le header */
+}
+
+header .overlay-dark {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(27,27,27,0.6);
+}
+
+header h2 {
+    color: #FFFFFF;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+/* Barre de recherche */
+header input[type="search"] {
+    background-color: rgba(255,255,255,0.8); /* plus opaque pour mieux voir le texte */
+    color: var(--dark);
+    border: 1px solid var(--gray);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+header input::placeholder {
+    color: var(--gray);
+}
+
+header input:focus {
+    outline: none;
+    border-color: var(--dark);
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+}
+
+header button {
+    background-color: var(--gray);
+    color: var(--light);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header button:hover {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+header form div {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Overlay et zoom pour les cartes de catégories */
+.group img {
+    transition: transform 0.3s, opacity 0.3s;
+    object-fit: cover;
+}
+
+.group:hover img {
+    transform: scale(1.02); /* léger zoom */
+    opacity: 0.9; /* un peu plus opaque */
+}
+
+.group > div {
+    transition: opacity 0.3s, background-color 0.3s;
+    background-color: rgba(0,0,0,0.3); /* overlay plus visible */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.group:hover > div {
+    opacity: 1;
+    background-color: rgba(0,0,0,0.4); /* overlay un peu plus sombre au hover */
+}
+
+.group > div span {
+    color: #FFFFFF; /* texte en blanc */
+    font-weight: 600;
+    text-align: center;
 }

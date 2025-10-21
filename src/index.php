@@ -9,7 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <?php
   $theme = $_COOKIE['theme'] ?? 'clair';
-  $cssFile = $theme === 'dark' ? 'css/theme-sombre.css' : 'css/theme-clair.css';
+  $cssFile = $theme === 'sombre' ? 'theme-sombre.css' : 'theme-clair.css';
   ?>
   <link rel="stylesheet" href="<?= $cssFile ?>">
 </head>

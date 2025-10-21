@@ -1,50 +1,185 @@
-/* Couleurs principales pour le thème sombre */
+/* ===== Thème Sombre Abdou's Market ===== */
 :root {
-    --color-marine: #15153d;     /* fond sombre */
-    --color-silver: #C0C0C0;     /* accents métalliques */
-    --color-anthracite: #2E2E2E; /* gris foncé élégant */
-    --color-blacklux: #1B1B1B;   /* noir profond */
+    --light: #F5F5F5;        /* texte clair / accents */
+    --silver: #C0C0C0;       /* boutons, accents */
+    --anthracite: #2E2E2E;   /* cartes, nav */
+    --blacklux: #1B1B1B;     /* super noir / overlays */
+    --fond: #0b1d3a;         /* bleu marine foncé pour le background général */
 }
 
-/* Body et texte principal */
 body {
-    background-color: var(--color-marine);
-    color: var(--color-silver);
+    background: linear-gradient(135deg, #111111, #2c2c3a, #1a2a44, #0b1d3a);
+    color: var(--light);
+    font-family: 'Inter', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* Navigation */
-nav {
-    background-color: var(--color-anthracite);
-    border-color: var(--color-silver);
-}
 
-/* Footer */
-footer {
-    background-color: var(--color-blacklux);
-    border-color: var(--color-silver);
-}
-
-/* Titres principaux */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--color-silver);
-}
-
-/* Labels et textes des formulaires */
-label, span {
-    color: var(--color-silver);
-}
-
-/* Boutons */
-button {
-    background-color: var(--color-anthracite);
-    color: var(--color-light);
-    border: none;
-}
-
-/* Liens et hover */
 a {
-    color: var(--color-silver);
+    color: var(--light);
+    transition: color 0.3s;
 }
-a:hover {
-    opacity: 0.8;
+
+nav {
+    background-color: var(--anthracite);
+    border-bottom: 1px solid var(--anthracite);
+}
+
+footer {
+    background-color: var(--blacklux);
+    border-top: 1px solid var(--anthracite);
+}
+
+button, input, textarea {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+button {
+    background-color: var(--silver);
+    color: var(--blacklux);
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--anthracite);
+    color: var(--light);
+}
+
+input, textarea {
+    background-color: var(--light);
+    color: var(--anthracite);
+    border: 1px solid var(--anthracite);
+}
+
+input::placeholder {
+    color: var(--anthracite);
+}
+
+/* Sections principales (Catégories, Produits) */
+section {
+    padding: 2rem 0;
+}
+
+/* Cartes à l'intérieur des sections */
+section .group, .section .card, .grid div {
+    background-color: var(--anthracite); /* cartes anthracite */
+    color: var(--light);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+section h2, section h3 {
+    color: var(--light);
+}
+
+section button {
+    background-color: var(--silver);
+    color: var(--blacklux);
+}
+
+section button:hover {
+    background-color: var(--anthracite);
+    color: var(--light);
+}
+
+/* Overlays sur images */
+.overlay-dark {
+    background-color: rgba(27,27,27,0.6);
+}
+
+/* Transitions pour hover etc. */
+.group:hover .group-hover\:opacity-100 {
+    opacity: 1 !important;
+}
+
+
+/* ===== Header et bannière ===== */
+header {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: var(--light);
+}
+
+/* Overlay noir semi-transparent */
+header .overlay-dark {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(27,27,27,0.7); /* un peu plus opaque pour bien contraster */
+}
+
+/* Texte du header */
+header h2 {
+    color: var(--light);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+/* Barre de recherche */
+header input[type="search"] {
+    background-color: rgba(0,0,0,0.6); /* plus opaque pour mieux voir le texte */
+    color: var(--light);
+    border: 1px solid var(--silver);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+header input::placeholder {
+    color: var(--silver);
+}
+
+/* Focus input */
+header input:focus {
+    outline: none;
+    border-color: var(--light);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+}
+
+/* Bouton de recherche */
+header button {
+    background-color: var(--silver);
+    color: var(--blacklux);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header button:hover {
+    background-color: var(--anthracite);
+    color: var(--light);
+}
+
+/* Shadow du container pour contraste */
+header form div {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.group img {
+    transition: transform 0.3s, opacity 0.3s;
+    object-fit: cover;
+}
+
+.group:hover img {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+.group > div {
+    transition: opacity 0.3s, background-color 0.3s;
+    background-color: rgba(0,0,0,0.3); /* overlay plus visible */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.group:hover > div {
+    opacity: 1;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.group > div span {
+    color: #FFFFFF; /* texte en blanc */
+    font-weight: 600;
+    text-align: center;
 }

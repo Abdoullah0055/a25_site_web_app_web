@@ -1,12 +1,6 @@
 <?php
-if (isset($_POST['theme_toggle'])) {
-  $theme = $_COOKIE['theme'] ?? 'clair';
-  $theme = $theme === 'clair' ? 'dark' : 'clair';
-  setcookie('theme', $theme, time() + 60 * 60 * 24 * 30, '/');
-  $_COOKIE['theme'] = $theme;
-  header("Location: " . $_SERVER['PHP_SELF']);
-  exit;
-}
+// Lire le thème actuel depuis le cookie (clair par défaut)
+$theme = $_COOKIE['theme'] ?? 'clair';
 ?>
 
 <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -31,13 +25,23 @@ if (isset($_POST['theme_toggle'])) {
     </a>
 
     <!-- Bouton thème -->
-    <form method="POST">
-      <button type="submit" name="theme_toggle">
-        <?php
-        $theme = $_COOKIE['theme'] ?? 'clair';
-        echo $theme === 'clair' ? '🌙' : '☀️';
-        ?>
-      </button>
-    </form>
+    <button id="theme-toggle" class="text-2xl">
+      <?= $theme === 'clair' ? '🌙' : '☀️'; ?>
+    </button>
   </div>
 </div>
+
+<script>
+  document.getElementById('theme-toggle').addEventListener('click', function() {
+    const currentTheme = getCookie('theme') || 'clair';
+    const newTheme = currentTheme === 'clair' ? 'sombre' : 'clair';
+    document.cookie = "theme=" + newTheme + "; path=/; max-age=" + (60 * 60 * 24 * 30);
+    location.reload();
+  });
+
+  // Petite fonction utilitaire pour lire un cookie
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
+</script>
