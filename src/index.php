@@ -17,8 +17,8 @@
 <body class="font-sans m-0 p-0">
 
   <!-- Header -->
-  <nav class="border-b">
-    <?php include "include/nav.php"; ?>
+<nav class="bg-light border-b border-gray-300">
+      <?php include "include/nav.php"; ?>
   </nav>
 
   <!-- Bannière Header -->

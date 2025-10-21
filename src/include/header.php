@@ -1,7 +1,7 @@
 <!-- Bannière Header -->
 <div class="absolute inset-0 bg-blacklux bg-opacity-60"></div>
 
-<div class="relative max-w-6xl mx-auto px-6 pt-20 pb-4 text-center">
+<div class="relative max-w-6xl mx-auto px-6 pt-6 pb-2 text-center">
   <h2 class="text-3xl md:text-4xl font-semibold text-light">À une recherche du coup de coeur</h2>
 
   <!-- Search bar -->

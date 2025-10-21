@@ -3,7 +3,7 @@
 $theme = $_COOKIE['theme'] ?? 'clair';
 ?>
 
-<div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+<div class="max-w-6xl mx-auto px-4 flex justify-between items-center"> <!-- rajouter py-1 si nécessaire pour le padding verticale -->
   <!-- Logo cliquable -->
   <a href="index.php" class="flex items-center space-x-3 hover:opacity-90 transition">
     <img src="images/elegant-logo-site.png" alt="Logo du site" class="w-[5rem] h-[5rem]">
@@ -25,7 +25,7 @@ $theme = $_COOKIE['theme'] ?? 'clair';
     </a>
 
     <!-- Bouton thème -->
-    <button id="theme-toggle" class="text-2xl">
+    <button id="theme-toggle" class="text-2xl" aria-label="Basculer thème">
       <?= $theme === 'clair' ? '🌙' : '☀️'; ?>
     </button>
   </div>
