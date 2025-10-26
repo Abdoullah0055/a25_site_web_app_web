@@ -172,3 +172,15 @@ header form div {
     font-weight: 600;
     text-align: center;
 }
+
+/* Bouton publier */
+
+.publier-btn {
+    background-color: var(--gray);
+    color: var(--light);
+}
+
+.publier-btn:hover {
+    background-color: var(--dark);
+    color: var(--white);
+}

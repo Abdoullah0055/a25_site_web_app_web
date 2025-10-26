@@ -1,15 +1,26 @@
 <?php
 // Lire le thème actuel depuis le cookie (clair par défaut)
 $theme = $_COOKIE['theme'] ?? 'clair';
+
+// Image du texte selon le thème
+$texteSrc = $theme === 'clair'
+    ? 'images/header-nom/sombre-image-header.png'
+    : 'images/header-nom/clair-image-header.png';
 ?>
 
-<div class="max-w-6xl mx-auto px-4 flex justify-between items-center"> <!-- rajouter py-1 si nécessaire pour le padding verticale -->
-  <!-- Logo cliquable -->
+<div class="relative max-w-6xl mx-auto px-4 flex justify-between items-center">
+  <!-- Logo -->
   <a href="index.php" class="flex items-center space-x-3 hover:opacity-90 transition">
     <img src="images/elegant-logo-site.png" alt="Logo du site" class="w-[5rem] h-[5rem]">
   </a>
 
-  <!-- Icônes + bouton thème -->
+  <!-- Titre -->
+   <!-- SOURCE IMAGE TEXTE FONT SPECIAL NAV: https://www.font-generator.com/fonts/ChocolateBox -->
+  <a href="index.php" class="absolute left-1/2 -translate-x-1/2 hover:opacity-90 transition">
+    <img src="<?= $texteSrc ?>" alt="Nom du site" class="h-[1.8rem] object-contain">
+  </a>
+
+  <!-- Icones + bouton thème -->
   <div class="flex items-center space-x-4">
     <a href="#" class="hover:opacity-80 transition">
       <img src="images/icones/icone-loupe.png" alt="Recherche" class="w-6 h-6">
@@ -39,7 +50,6 @@ $theme = $_COOKIE['theme'] ?? 'clair';
     location.reload();
   });
 
-  // Petite fonction utilitaire pour lire un cookie
   function getCookie(name) {
     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     return match ? match[2] : null;
