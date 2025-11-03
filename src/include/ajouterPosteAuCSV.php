@@ -52,17 +52,21 @@ if (isset($_POST["titre"], $_POST["description"], $_POST["prix"], $_POST["negoci
     $description = str_replace([";", "\n"], [",", " "], $description);
     $vendeur = str_replace(";", ",", $vendeur);
 
+    date_default_timezone_set("America/Montreal");
+    $dt = date('Y-m-d H:i:s');
+
     //Validation url de l'image
     if (isset($_POST["image"]) && !empty($_POST["image"])) {
         if (filter_var($_POST["image"], FILTER_VALIDATE_URL)) {
             $image = $_POST["image"];
         }
         //ENVOYER AU CSV AVEC IMAGE
-        $chaine = $titre . ";" . $description . ";" . $prix . ";" . $negociable . ";" . $image . ";" . $vendeur . "\n";
+        $chaine = $titre . ";" . $description . ";" . $prix . ";" . $negociable . ";" . $image . ";" . $vendeur . ";" . $dt . "\n";
         fwrite($fichier, $chaine);
     } else {
-        //ENVOYER AU CSV SANS IMAGE
-        $chaine = $titre . ";" . $description . ";" . $prix . ";" . $negociable . ";" . $vendeur . "\n";
+        //ENVOYER AU CSV avec image par défaut
+        $urlImageDefault = "https://media.istockphoto.com/id/1415203156/vector/error-page-page-not-found-vector-icon-in-line-style-design-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=RuQ_sn-RjAVNKOmARuSf1oXFkVn3OMKeqO5vw8GYoS8=";
+        $chaine = $titre . ";" . $description . ";" . $prix . ";" . $negociable . ";" . $urlImageDefault . ";" . $vendeur . ";" . $dt . "\n";
         fwrite($fichier, $chaine);
     }
 
