@@ -25,13 +25,13 @@ $texteSrc = $theme === 'clair'
     <a href="#" class="hover:opacity-80 transition">
       <img src="images/icones/icone-loupe.png" alt="Recherche" class="w-6 h-6">
     </a>
-    <a href="#" class="hover:opacity-80 transition">
+    <!-- <a href="#" class="hover:opacity-80 transition">
       <img src="images/icones/icone-messagerie.png" alt="Messages" class="w-6 h-6">
-    </a>
-    <a href="#" class="hover:opacity-80 transition relative">
+    </a> -->
+    <!-- <a href="#" class="hover:opacity-80 transition relative">
       <img src="images/icones/icone-notification.png" alt="Notifications" class="w-6 h-6">
-    </a>
-    <a href="#" class="hover:opacity-80 transition">
+    </a> -->
+    <a href="../../src/login.php" class="hover:opacity-80 transition">
       <img src="images/icones/icone-profile.png" alt="Profil" class="w-6 h-6 rounded-full">
     </a>
 

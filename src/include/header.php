@@ -20,8 +20,18 @@
     </div>
   </form>
 
+  <!-- Afficher le message dépendamment à si l'utilisateur est connecté -->
+  <?php
+  if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
+    echo '<h2 class="mt-7 text-3xl font-normal">Bienvenue, ' . htmlspecialchars($_SESSION['nom']) . '!</h2>';
+  } else {
+    echo '<h2 class="mt-7 text-3xl font-normal">Veuillez vous connecter pour pouvoir publier des annonces.</h2>';
+  }
+  ?>
+
+
   <!-- Bouton Publier -->
-  <div class="mt-10">
+  <div class="mt-5">
     <?php include "include/boutonPublier.php"; ?>
   </div>
 </div>
