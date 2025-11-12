@@ -2,14 +2,9 @@
 session_start();
 $connected = $_SESSION['connected'] ?? false;
 echo $connected ? "User is connected" : "User is not connected";
-echo '<pre>'; // For better readability in the browser
+echo '<pre>';
 var_dump($_SESSION);
 echo '</pre>';
-// session_unset();
-// session_destroy();
-// echo '<pre>'; // For better readability in the browser
-// var_dump($_SESSION);
-// echo '</pre>';
 ?>
 <!-- Source pour les icones: https://www.flaticon.com/search?word=message -->
 <!DOCTYPE html>
