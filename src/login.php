@@ -24,7 +24,9 @@ session_start();
     </nav>
 
     <!-- Contenu du formulaire -->
-    <?php include "include/formulaireLogin.php"; ?>
+    <main class="flex justify-center items-center py-24 bg-gray-100">
+        <?php include "include/formulaireLogin.php"; ?>
+    </main>
 
     <!-- Footer -->
     <footer class="border-t mt-16">

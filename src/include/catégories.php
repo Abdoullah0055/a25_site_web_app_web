@@ -7,7 +7,7 @@
             <img src="images/elegant-technologie.jpg" alt="Technologie"
                 class="w-full h-40 object-cover opacity-90 group-hover:opacity-100 transition">
             <div class="absolute inset-0 flex items-center justify-center bg-blacklux bg-opacity-40 opacity-0 group-hover:opacity-100 transition">
-                <span class="text-light font-semibold">Technologie</span>
+                <span class="text-light font-semibold">Appareils électroniques</span>
             </div>
         </div>
 
@@ -15,7 +15,7 @@
             <img src="images/elegante-voiture.jpg" alt="Voitures"
                 class="w-full h-40 object-cover opacity-90 group-hover:opacity-100 transition">
             <div class="absolute inset-0 flex items-center justify-center bg-blacklux bg-opacity-40 opacity-0 group-hover:opacity-100 transition">
-                <span class="text-light font-semibold">Voitures</span>
+                <span class="text-light font-semibold">Véhicules</span>
             </div>
         </div>
 

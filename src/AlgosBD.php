@@ -33,13 +33,13 @@ function ajouter_Article($categorie, $usager, $titre, $description, $prix, $nego
         return false;
     }
     try {
-        $sqlInsert = "insert into articles(id_categorie, id_usager, titre, description, prix, negociable, chemin_image, date_pub)
+        $sqlInsert = "insert into article(id_categorie, id_usager, titre, description, prix, negociable, chemin_image, date_pub)
 
                     values(?, ?, ?, ?, ?, ?, ?, ?);";
         $stmt = $pdo->prepare($sqlInsert);
         $stmt->execute([$categorie, $usager, $titre, $description, $prix, $negociable, $chemin, $date]);
     } catch (\PDOException $e) {
-        echo'Erreur, AlgosBD.php: ajouter_Article: ' . $e->getMessage();
+        echo 'Erreur, AlgosBD.php: ajouter_Article: ' . $e->getMessage();
         return false;
     }
     return true;
@@ -48,8 +48,9 @@ function ajouter_Article($categorie, $usager, $titre, $description, $prix, $nego
 // ----------------------------------------------------------------------------
 // Retourne tous les articles ou false.
 // ----------------------------------------------------------------------------
-function obtenir_articles() {
-    $sql = "SELECT * FROM article";
+function obtenir_articles()
+{
+    $sql = "select * from article";
 
     try {
         $pdo = get_pdo();
@@ -61,5 +62,24 @@ function obtenir_articles() {
         $retour =  false;
     }
 
+    return $retour;
+}
+
+function get_idUsager($pseudo)
+{
+    $sql = "select id from usager where pseudo = ?";
+    try {
+        $pdo = get_pdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$pseudo]);
+        $retour = $stmt->fetch();
+        if ($retour && isset($retour['id'])) {
+            $retour =  $retour['id'];
+        } else {
+            return false;
+        }
+    } catch (Exception $e) {
+        $retour = false;
+    }
     return $retour;
 }

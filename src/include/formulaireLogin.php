@@ -19,8 +19,8 @@
     </div>
 
     <p class="mt-4">
-        Create an account?
-        <a href="#" class="text-indigo-500">Click here</a>
+        Créer un compte?
+    <a href="#" class="text-indigo-500">Cliquez ici</a>
     </p>
 
     <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 transition-all text-white w-full py-2 rounded-md mt-4 cursor-pointer">
