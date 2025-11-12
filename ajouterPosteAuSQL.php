@@ -7,6 +7,11 @@ if ($pdo === false) {
     die("Erreur de connexion à la base de données.");
 };
 
+//Vérifier si des champs sont vides:
+if (empty($titre) || empty($description) || empty($prix) || empty($negociable) || empty($idCat)) {
+    die("Erreur : certains champs du formulaire sont invalides ou manquants.");
+}
+
 //Assignation des variables + Nettoyage + Validation
 $titre = $description = $prix = $negociable = $image = $vendeur = $dt = $idCat = "";
 
@@ -49,13 +54,9 @@ if (isset($_POST["titre"], $_POST["description"], $_POST["prix"], $_POST["negoci
         }
     }
 
-    //Vérification négociable oui = 1 non = 0
-    if ($_POST['negociable'] === "oui") {
-        $negociable = 1;
-    } elseif ($_POST['negociable'] === "non") {
-        $negociable = 0;
-    } else {
-        die("Erreur: valeur de négociable invalide.");
+    //Verification Négociable
+    if (($_POST["negociable"] === "oui" || $_POST["negociable"] === "non")) {
+        $negociable = $_POST["negociable"];
     }
 
     // Date et heure actuelle

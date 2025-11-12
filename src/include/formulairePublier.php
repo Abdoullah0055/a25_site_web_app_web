@@ -56,7 +56,7 @@
         <!-- URL de l'image -->
         <div class="mb-6">
             <label for="image" class="block font-semibold mb-2">URL de l'image</label>
-            <input type="url" id="image" name="image"
+            <input type="text" id="image" name="image"
                 class="w-full p-3 rounded border focus:outline-none focus:ring-2"
                 placeholder="https://exemple.com/monimage.jpg">
         </div>
