@@ -45,12 +45,12 @@
                 placeholder="https://exemple.com/monimage.jpg">
         </div>
 
-        <!-- Pseudonyme du vendeur -->
+        <!-- Pseudonyme du vendeur
         <div class="mb-6">
             <label for="vendeur" class="block font-semibold mb-2">Pseudonyme du vendeur</label>
             <input type="text" id="vendeur" name="vendeur" required minlength="2" maxlength="20"
                 class="w-full p-3 rounded border focus:outline-none focus:ring-2">
-        </div>
+        </div> -->
 
         <!-- Bouton soumettre -->
         <div class="text-center">

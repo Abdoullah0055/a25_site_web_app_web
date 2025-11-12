@@ -21,17 +21,21 @@
   </form>
 
   <!-- Afficher le message dépendamment à si l'utilisateur est connecté -->
-  <?php
-  if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-    echo '<h2 class="mt-7 text-3xl font-normal">Bienvenue, ' . htmlspecialchars($_SESSION['nom']) . '!</h2>';
-  } else {
-    echo '<h2 class="mt-7 text-3xl font-normal">Veuillez vous connecter pour pouvoir publier des annonces.</h2>';
-  }
-  ?>
+  <?php if (isset($_SESSION['connected']) && $_SESSION['connected'] === true): ?>
+    <h3 class="mt-7 text-3xl font-normal">
+      Bienvenue, <?= htmlspecialchars($_SESSION['nom']) ?>!
+    </h3>
+    <div class="mt-5 mb-10 flex justify-center gap-6" items.center>
+      <?php include "include/boutonPublier.php"; ?>
+      <?php include "include/boutonLogout.php"; ?>
+    </div>
 
-
-  <!-- Bouton Publier -->
-  <div class="mt-5">
-    <?php include "include/boutonPublier.php"; ?>
-  </div>
+  <?php else: ?>
+    <h3 class="mt-7 text-3xl font-normal">
+      Veuillez vous connecter pour pouvoir publier des annonces.
+    </h3>
+    <div class="mt-5">
+      <?php include "include/boutonLogin.php"; ?>
+    </div>
+  <?php endif; ?>
 </div>

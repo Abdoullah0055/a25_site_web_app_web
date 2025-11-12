@@ -31,12 +31,16 @@ footer {
     border-top: 1px solid var(--gray);
 }
 
+span {
+    margin-bottom: 20px;
+}
+
 button, input, textarea {
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 button {
-    background-color: var(--gray);
+    /* background-color: var(--gray); */
     color: var(--light);
     border: none;
     cursor: pointer;
@@ -172,15 +176,21 @@ header form div {
     font-weight: 600;
     text-align: center;
 }
-
-/* Bouton publier */
-
-.publier-btn {
+/* Boutons Publier, Login et Logout */
+.action-btn, .publier-btn, .login-btn, .logout-btn {
     background-color: var(--gray);
     color: var(--light);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
 }
 
-.publier-btn:hover {
+.action-btn:hover, .publier-btn:hover, .login-btn:hover, .logout-btn:hover {
     background-color: var(--dark);
     color: var(--white);
+    transform: translateY(-2px);
 }
+
