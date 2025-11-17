@@ -26,73 +26,11 @@
             $negociable = $article['negociable'] ? "Oui" : "Non";
             $image = htmlspecialchars($article['chemin_image']);
             $datePublication = htmlspecialchars($article['date_pub']);
+            $vendeur = get_nomUsager($article["id_usager"]);
 
-            if (isset($_SESSION["nom"])) {
-                $vendeur = htmlspecialchars($_SESSION["nom"]);
-                creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication);
-            } else {
-                // Utilisateur non connecté - ne pas afficher article
-            }
+            //Créer postes
+            creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // $cheminFichier = __DIR__ . "/../BD_CSV/informations_annonces.csv";
-
-        // if (file_exists($cheminFichier)) {
-        //     //Publier les annonces les plus nouvelles en premier dans la page web.
-        //     $lignes = file($cheminFichier, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        //     $lignes = array_reverse($lignes);
-
-        //     foreach ($lignes as $ln) {
-        //         $ligneCSV = str_getcsv($ln, ";", "\"", "\\");
-        //         if (count($ligneCSV) == 7) {
-        //             $titre = $ligneCSV[0];
-        //             $description = $ligneCSV[1];
-        //             $prix = $ligneCSV[2];
-        //             $negociable = $ligneCSV[3];
-        //             $image = $ligneCSV[4];
-        //             $vendeur = $ligneCSV[5];
-        //             $datePublication = $ligneCSV[6];
-        //             creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication);
-        //         } else if (count($ligneCSV) == 6) { // Anciennes photos sans images dans le CSV
-        //             $titre = $ligneCSV[0];
-        //             $description = $ligneCSV[1];
-        //             $prix = $ligneCSV[2];
-        //             $negociable = $ligneCSV[3];
-        //             $image = "https://media.istockphoto.com/id/1415203156/vector/error-page-page-not-found-vector-icon-in-line-style-design-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=RuQ_sn-RjAVNKOmARuSf1oXFkVn3OMKeqO5vw8GYoS8=";
-        //             $vendeur = $ligneCSV[4];
-        //             $datePublication = $ligneCSV[5];
-        //             creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication);
-        //         } 
-        //         else {
-        //             // Gérer le cas où la ligne n'a pas le bon nombre de champs
-        //             echo "<p class='text-red-500'>Erreur: Ligne de données invalide dans le fichier CSV.</p>";
-        //         }
-        //     }
-        // } else
-        //     echo "Produits.php: Le fichier CSV est introuvable ou inaccessible.";
         ?>
 
     </div>

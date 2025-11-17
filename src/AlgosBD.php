@@ -50,7 +50,7 @@ function ajouter_Article($categorie, $usager, $titre, $description, $prix, $nego
 // ----------------------------------------------------------------------------
 function obtenir_articles()
 {
-    $sql = "select * from article";
+    $sql = "select * from article order by date_pub desc;";
 
     try {
         $pdo = get_pdo();
@@ -78,6 +78,25 @@ function get_idUsager($pseudo)
         } else {
             return false;
         }
+    } catch (Exception $e) {
+        $retour = false;
+    }
+    return $retour;
+}
+
+function get_nomUsager($id){
+    $sql = "select pseudo from usager where id = ?";
+    try{
+        $pdo = get_pdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id]);
+        $retour = $stmt->fetch();
+        if ($retour && isset($retour['pseudo'])) {
+            $retour =  $retour['pseudo'];
+        } else {
+            return false;
+        }    } catch (Exception $e) {
+        $retour = false;
     } catch (Exception $e) {
         $retour = false;
     }
