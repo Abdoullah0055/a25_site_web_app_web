@@ -1,6 +1,6 @@
 <!-- Formulaire pour publier un article -->
 <div class="max-w-3xl mx-auto px-6 py-12">
-    <h1 class="text-3xl font-semibold mb-8 text-center">Publier un nouvel article</h1>
+    <h1 class="text-3xl font-semibold mb-8 text-center">Publier un nouvel article!!</h1>
 
     <form action="include/ajouterPosteAuSQL.php" method="POST" class="p-8 rounded-xl shadow-md">
         <!-- Titre -->
