@@ -76,6 +76,7 @@ function get_idUsager($pseudo)
         if ($retour && isset($retour['id'])) {
             $retour =  $retour['id'];
         } else {
+            consoleLog("Aucun id usager avec pseudo: " . $pseudo);
             return false;
         }
     } catch (Exception $e) {
@@ -84,9 +85,10 @@ function get_idUsager($pseudo)
     return $retour;
 }
 
-function get_nomUsager($id){
+function get_nomUsager($id)
+{
     $sql = "select pseudo from usager where id = ?";
-    try{
+    try {
         $pdo = get_pdo();
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id]);
@@ -94,11 +96,67 @@ function get_nomUsager($id){
         if ($retour && isset($retour['pseudo'])) {
             $retour =  $retour['pseudo'];
         } else {
+            consoleLog("Aucun usager avec id: " . $id);
             return false;
-        }    } catch (Exception $e) {
+        }
+    } catch (Exception $e) {
         $retour = false;
     } catch (Exception $e) {
         $retour = false;
     }
     return $retour;
+}
+
+function verifierLogin($nom, $mdp)
+{
+    $sql = "select pseudo, mdp from usager where pseudo = ?";
+    try {
+        $pdo = get_pdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$nom]);
+        $retour = $stmt->fetch();
+
+        if (!$retour || !isset($retour['pseudo']) || !isset($retour['mdp'])) {
+            consoleLog("Utilisateur inexistant: " . $nom);
+            return false;
+        }
+
+        if ($retour['pseudo'] === $nom && password_verify($mdp, $retour['mdp'])) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (Exception $e) {
+        $retour = false;
+    }
+    return $retour;
+}
+
+function inscrireUsager($nom, $mdp)
+{
+    $sql = "select pseudo from usager where pseudo = ?";
+    try {
+        $pdo = get_pdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$nom]);
+        $retour = $stmt->fetch();
+
+        if ($retour || isset($retour['pseudo'])) {
+            consoleLog("Utilisateur déjà existant: " . $retour['pseudo']);
+            return false;
+        }
+
+        $sqlInsert = "insert into usager(pseudo, mdp) values(?, ?);";
+        $stmt = $pdo->prepare($sqlInsert);
+        $hashedMdp = password_hash($mdp, PASSWORD_DEFAULT);
+        $stmt->execute([$nom, $hashedMdp]);
+        return true;
+    } catch (Exception $e) {
+        $retour = false;
+    }
+    return $retour;
+}
+
+function consoleLog($message){
+    echo "<script>console.log('PHP: " . $message . "');</script>";
 }

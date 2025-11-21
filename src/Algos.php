@@ -6,7 +6,8 @@ function creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, 
             <img src="' . $image . '" alt="' . $titre . '" class="w-full h-48 object-cover">
             <div class="p-5">
                 <p class="text-silver font-bold text-lg">
-                    ' . $prix . '
+                    ' . $prix . '$
+                    <br>
                     <span class="font-semibold text-base">
                         ' . ($negociable === "oui" ? ' (Négociable)' : ' (Non-négociable)') . '
                     </span>

@@ -6,6 +6,7 @@ echo '<pre>';
 var_dump($_SESSION);
 echo '</pre>';
 ?>
+
 <!-- Source pour les icones: https://www.flaticon.com/search?word=message -->
 <!DOCTYPE html>
 <html lang="fr">

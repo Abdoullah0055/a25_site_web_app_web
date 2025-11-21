@@ -1,9 +1,13 @@
 /* ===== Thème Clair Abdou's Market - Dégradé doux ===== */
 :root {
-    --dark: #1B1B1B;       /* texte sombre / accents */
-    --gray: #A0A0A0;       /* boutons, accents */
-    --light: #F5F5F5;      /* cartes, nav */
-    --white: #FFFFFF;       /* super clair / overlays */
+    --dark: #1B1B1B;
+    /* texte sombre / accents */
+    --gray: #A0A0A0;
+    /* boutons, accents */
+    --light: #F5F5F5;
+    /* cartes, nav */
+    --white: #FFFFFF;
+    /* super clair / overlays */
 }
 
 /* Background global */
@@ -35,7 +39,9 @@ span {
     margin-bottom: 20px;
 }
 
-button, input, textarea {
+button,
+input,
+textarea {
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
@@ -51,7 +57,8 @@ button:hover {
     color: var(--dark);
 }
 
-input, textarea {
+input,
+textarea {
     background-color: var(--white);
     color: var(--dark);
     border: 1px solid var(--gray);
@@ -67,16 +74,19 @@ section {
 }
 
 /* Cartes à l'intérieur des sections */
-section .group, .section .card, .grid div {
+section .group,
+.section .card,
+.grid div {
     background-color: var(--white);
     color: var(--dark);
     border-radius: 0.75rem;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
-section h2, section h3 {
+section h2,
+section h3 {
     color: var(--dark);
 }
 
@@ -92,7 +102,7 @@ section button:hover {
 
 /* Overlays sur images */
 .overlay-light {
-    background-color: rgba(255,255,255,0.6);
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 /* Header et bannière */
@@ -100,23 +110,29 @@ header {
     position: relative;
     background-size: cover;
     background-position: center;
-    color: #FFFFFF; /* texte blanc dans le header */
+    color: #FFFFFF;
+    /* texte blanc dans le header */
 }
 
 header .overlay-dark {
     position: absolute;
     inset: 0;
-    background-color: rgba(27,27,27,0.6);
+    background-color: rgba(27, 27, 27, 0.6);
 }
 
 header h2 {
     color: #FFFFFF;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
+
+.text-shadow-dark {
+    text-shadow: 6px 6px 15px rgba(0, 0, 0, 1);
+}
+
 
 /* Barre de recherche */
 header input[type="search"] {
-    background-color: rgba(255,255,255,0.8); /* plus opaque pour mieux voir le texte */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* plus opaque pour mieux voir le texte */
     color: var(--dark);
     border: 1px solid var(--gray);
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
@@ -129,7 +145,7 @@ header input::placeholder {
 header input:focus {
     outline: none;
     border-color: var(--dark);
-    box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 header button {
@@ -144,7 +160,7 @@ header button:hover {
 }
 
 header form div {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Overlay et zoom pour les cartes de catégories */
@@ -154,30 +170,39 @@ header form div {
 }
 
 .group:hover img {
-    transform: scale(1.02); /* léger zoom */
-    opacity: 0.9; /* un peu plus opaque */
+    transform: scale(1.02);
+    /* léger zoom */
+    opacity: 0.9;
+    /* un peu plus opaque */
 }
 
-.group > div {
+.group>div {
     transition: opacity 0.3s, background-color 0.3s;
-    background-color: rgba(0,0,0,0.3); /* overlay plus visible */
+    background-color: rgba(0, 0, 0, 0.3);
+    /* overlay plus visible */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.group:hover > div {
+.group:hover>div {
     opacity: 1;
-    background-color: rgba(0,0,0,0.4); /* overlay un peu plus sombre au hover */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* overlay un peu plus sombre au hover */
 }
 
-.group > div span {
-    color: #FFFFFF; /* texte en blanc */
+.group>div span {
+    color: #FFFFFF;
+    /* texte en blanc */
     font-weight: 600;
     text-align: center;
 }
+
 /* Boutons Publier, Login et Logout */
-.action-btn, .publier-btn, .login-btn, .logout-btn {
+.action-btn,
+.publier-btn,
+.login-btn,
+.logout-btn {
     background-color: var(--gray);
     color: var(--light);
     font-weight: 600;
@@ -188,9 +213,11 @@ header form div {
     transition: background-color 0.3s, color 0.3s, transform 0.2s;
 }
 
-.action-btn:hover, .publier-btn:hover, .login-btn:hover, .logout-btn:hover {
+.action-btn:hover,
+.publier-btn:hover,
+.login-btn:hover,
+.logout-btn:hover {
     background-color: var(--dark);
     color: var(--white);
     transform: translateY(-2px);
 }
-

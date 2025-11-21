@@ -5,19 +5,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    // Ouvrir et parcourir fichier pour trouver si user + mdp valide
-    $bdMDP = fopen('../BD_CSV/informations_login.csv', 'r');
-
     // Bool qui devient true quand connection est bonne
     $authentifié = false;
 
-    while (($ligne = fgetcsv($bdMDP, 1000, ";", '"', '')) !== false) {
-        if ($username == $ligne[0] && $password == $ligne[1]) {
-            $authentifié = true;
-            break;
-        }
-    }
-    fclose($bdMDP);
+    // Essayer de se connecter: true si ok, false sinon
+    require_once "../AlgosBD.php";
+    $authentifié = verifierLogin($username, $password);
 
     if ($authentifié) {
         $_SESSION['connected'] = true;
@@ -30,3 +23,4 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     header("Location: ../index.php");
     exit();
 }
+?>

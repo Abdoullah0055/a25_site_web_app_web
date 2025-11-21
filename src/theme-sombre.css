@@ -1,21 +1,26 @@
 /* ===== Thème Sombre Abdou's Market ===== */
 :root {
-    --light: #F5F5F5;        /* texte clair / accents */
-    --silver: #C0C0C0;       /* boutons, accents */
-    --anthracite: #2E2E2E;   /* cartes, nav */
-    --blacklux: #1B1B1B;     /* super noir / overlays */
-    --fond: #0b1d3a;         /* bleu marine foncé pour le background général */
+    --light: #F5F5F5;
+    /* texte clair / accents */
+    --silver: #C0C0C0;
+    /* boutons, accents */
+    --anthracite: #2E2E2E;
+    /* cartes, nav */
+    --blacklux: #1B1B1B;
+    /* super noir / overlays */
+    --fond: #0b1d3a;
+    /* bleu marine foncé pour le background général */
 }
 
+/* Body général sombre */
 body {
-    background: linear-gradient(135deg, #111111, #2c2c3a, #1a2a44, #0b1d3a);
+    background-color: var(--fond);
     color: var(--light);
     font-family: 'Inter', Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
     transition: background 0.3s, color 0.3s;
 }
-
 
 a {
     color: var(--light);
@@ -32,48 +37,59 @@ footer {
     border-top: 1px solid var(--anthracite);
 }
 
-button, input, textarea {
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-
+/* Boutons généraux */
 button {
-    /* background-color: var(--silver); */
-    color: var(--blacklux);
+    background-color: var(--anthracite);
+    color: var(--light);
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 button:hover {
-    background-color: var(--anthracite);
-    color: var(--light);
+    background-color: var(--silver);
+    color: var(--blacklux);
 }
 
-input, textarea {
-    background-color: var(--light);
-    color: var(--anthracite);
+/* Formulaires clairs */
+input,
+textarea,
+select {
+    background-color: #FFFFFF;
+    /* fond blanc */
+    color: #000000;
+    /* texte noir */
     border: 1px solid var(--anthracite);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-input::placeholder {
-    color: var(--anthracite);
+input::placeholder,
+textarea::placeholder,
+select option {
+    color: #666666;
 }
 
-/* Sections principales (Catégories, Produits) */
+/* Sections principales */
 section {
     padding: 2rem 0;
+    background-color: var(--fond);
 }
 
-/* Cartes à l'intérieur des sections */
-section .group, .section .card, .grid div {
-    background-color: var(--anthracite); /* cartes anthracite */
+section .group,
+.section .card,
+.grid div {
+    background-color: var(--anthracite);
     color: var(--light);
     border-radius: 0.75rem;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
-section h2, section h3 {
+section h2,
+section h3 {
     color: var(--light);
 }
 
@@ -89,16 +105,10 @@ section button:hover {
 
 /* Overlays sur images */
 .overlay-dark {
-    background-color: rgba(27,27,27,0.6);
+    background-color: rgba(27, 27, 27, 0.6);
 }
 
-/* Transitions pour hover etc. */
-.group:hover .group-hover\:opacity-100 {
-    opacity: 1 !important;
-}
-
-
-/* ===== Header et bannière ===== */
+/* Header et bannière */
 header {
     position: relative;
     background-size: cover;
@@ -106,43 +116,40 @@ header {
     color: var(--light);
 }
 
-/* Overlay noir semi-transparent */
 header .overlay-dark {
     position: absolute;
     inset: 0;
-    background-color: rgba(27,27,27,0.7);
+    background-color: rgba(27, 27, 27, 0.7);
 }
 
-/* Texte du header */
 header h2 {
     color: var(--light);
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.text-shadow-dark {
+    text-shadow: 6px 6px 15px rgba(0, 0, 0, 1);
 }
 
 /* Barre de recherche */
 header input[type="search"] {
-    background-color: rgba(0,0,0,0.6); /* plus opaque pour mieux voir le texte */
+    background-color: rgba(0, 0, 0, 0.6);
     color: var(--light);
     border: 1px solid var(--silver);
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 header input::placeholder {
     color: var(--silver);
 }
 
-/* Focus input */
 header input:focus {
     outline: none;
     border-color: var(--light);
-    box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
 }
 
-/* Bouton de recherche */
 header button {
     background-color: var(--silver);
     color: var(--blacklux);
-    transition: background-color 0.3s, color 0.3s;
 }
 
 header button:hover {
@@ -150,11 +157,11 @@ header button:hover {
     color: var(--light);
 }
 
-/* Shadow du container pour contraste */
 header form div {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
+/* Cartes et overlay des groupes */
 .group img {
     transition: transform 0.3s, opacity 0.3s;
     object-fit: cover;
@@ -165,27 +172,30 @@ header form div {
     opacity: 0.9;
 }
 
-.group > div {
+.group>div {
     transition: opacity 0.3s, background-color 0.3s;
-    background-color: rgba(0,0,0,0.3); /* overlay plus visible */
+    background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.group:hover > div {
+.group:hover>div {
     opacity: 1;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
-.group > div span {
-    color: #FFFFFF; /* texte en blanc */
+.group>div span {
+    color: #FFFFFF;
     font-weight: 600;
     text-align: center;
 }
 
 /* Boutons Publier, Login et Logout */
-.action-btn, .publier-btn, .login-btn, .logout-btn {
+.action-btn,
+.publier-btn,
+.login-btn,
+.logout-btn {
     background-color: var(--silver);
     color: var(--blacklux);
     font-weight: 600;
@@ -196,18 +206,12 @@ header form div {
     transition: background-color 0.3s, color 0.3s, transform 0.2s;
 }
 
-.action-btn:hover, .publier-btn:hover, .login-btn:hover, .logout-btn:hover {
+.action-btn:hover,
+.publier-btn:hover,
+.login-btn:hover,
+.logout-btn:hover {
     background-color: var(--anthracite);
     color: var(--light);
     transform: translateY(-2px);
 }
 
-form input {
-    color: black
-}
-form textarea {
-    color: black
-}
-form select {
-    color: black
-}
