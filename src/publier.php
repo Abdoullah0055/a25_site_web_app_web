@@ -16,7 +16,7 @@ session_start();
     <link rel="stylesheet" href="<?= $cssFile ?>">
 </head>
 
-<body class="font-sans m-0 p-0">
+<body class="font-sans m-0 p-0 <?= $theme === 'sombre' ? 'theme-sombre' : '' ?>">
 
     <!-- Nav -->
     <nav class="border-b">

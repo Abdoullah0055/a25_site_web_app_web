@@ -1,8 +1,8 @@
 <!-- Formulaire pour publier un article -->
 <div class="max-w-3xl mx-auto px-6 py-12">
-    <h1 class="text-3xl font-semibold mb-8 text-center">Publier un nouvel article!!</h1>
+    <h1 class="text-3xl font-semibold mb-8 text-center">Publier un nouvel article!!!</h1>
 
-    <form action="include/ajouterPosteAuSQL.php" method="POST" class="p-8 rounded-xl shadow-md">
+    <form action="include/ajouterPosteAuSQL.php" method="POST" enctype="multipart/form-data" class="p-8 rounded-xl shadow-md form-theme-sombre">
         <!-- Titre -->
         <div class="mb-6">
             <label for="titre" class="block font-semibold mb-2">Titre</label>
@@ -53,20 +53,12 @@
             </label>
         </div>
 
-        <!-- URL de l'image -->
+        <!-- Téléversement d'image -->
         <div class="mb-6">
-            <label for="image" class="block font-semibold mb-2">URL de l'image</label>
-            <input type="text" id="image" name="image"
-                class="w-full p-3 rounded border focus:outline-none focus:ring-2"
-                placeholder="https://exemple.com/monimage.jpg">
-        </div>
-
-        <!-- Pseudonyme du vendeur
-        <div class="mb-6">
-            <label for="vendeur" class="block font-semibold mb-2">Pseudonyme du vendeur</label>
-            <input type="text" id="vendeur" name="vendeur" required minlength="2" maxlength="20"
+            <label for="fichier" class="block font-semibold mb-2">Image de l'article</label>
+            <input type="file" id="fichier" name="fichier" required
                 class="w-full p-3 rounded border focus:outline-none focus:ring-2">
-        </div> -->
+        </div>
 
         <!-- Bouton soumettre -->
         <div class="text-center">
