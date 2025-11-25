@@ -9,7 +9,7 @@ function creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, 
                     ' . $prix . '$
                     <br>
                     <span class="font-semibold text-base">
-                        ' . ($negociable === "oui" ? ' (Négociable)' : ' (Non-négociable)') . '
+                        ' . ($negociable === "Oui" ? ' (Négociable)' : ' (Non-négociable)') . '
                     </span>
                 </p>
                 <h3 class="font-semibold text-base text-light mt-1">' . $titre . '</h3>

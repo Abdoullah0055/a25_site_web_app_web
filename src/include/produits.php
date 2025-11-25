@@ -23,7 +23,7 @@
             $titre = htmlspecialchars($article['titre']);
             $description = htmlspecialchars($article['description']);
             $prix = htmlspecialchars($article['prix']);
-            $negociable = $article['negociable'] ? "Oui" : "Non";
+            $negociable = $article['negociable'] === 1 ? "Oui" : "Non";
             $image = htmlspecialchars($article['chemin_image']);
             $datePublication = htmlspecialchars($article['date_pub']);
             $vendeur = get_nomUsager($article["id_usager"]);

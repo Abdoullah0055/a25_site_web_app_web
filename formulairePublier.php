@@ -56,7 +56,7 @@
         <!-- Téléversement d'image -->
         <div class="mb-6">
             <label for="fichier" class="block font-semibold mb-2">Image de l'article</label>
-            <input type="file" id="fichier" name="fichier" 
+            <input type="file" id="fichier" name="fichier" required
                 class="w-full p-3 rounded border focus:outline-none focus:ring-2">
         </div>
 

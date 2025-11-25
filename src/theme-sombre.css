@@ -14,7 +14,7 @@
 
 /* Body général sombre */
 body {
-    background-color: var(--fond);
+    background: linear-gradient(135deg, var(--fond), #0d0d0d, #000000);
     color: var(--light);
     font-family: 'Inter', Helvetica, Arial, sans-serif;
     margin: 0;

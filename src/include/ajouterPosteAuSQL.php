@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //Gestion du fichier téléversé
         if (!isset($_FILES['fichier']) || $_FILES['fichier']['error'] === UPLOAD_ERR_NO_FILE) {
             //Aucun fichier téléversé, utiliser image par défaut
-            $image = 'imagesUpload/imageDefault.jpg';
+            $image = '../imagesUpload/imageDefault.jpg';
         } else {
             //Image téléversé
             $cheminAbsolue = __DIR__ . '/../../imagesUpload/';
