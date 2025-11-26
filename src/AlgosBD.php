@@ -182,3 +182,58 @@ function get_estAdmin($idUser)
     }
     return $retour;
 }
+
+function supprimer_article($idArticle){
+    $sql = "delete from article where id = ?";
+
+    try{
+        $pdo = get_pdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idArticle]);
+        return true;
+    } catch (Exception $e){
+        consoleLog("Erreur lors de la suppression de l'article id: " . $idArticle . " - " . $e->getMessage());
+        return false;
+    }
+}
+
+function get_validiteSuppressionArticle($idArticle, $nomUsager){
+
+    //Vérifier si admin
+    if(get_estAdmin(get_idUsager($nomUsager))){
+        return true;
+    }
+
+    if(!isset($nomUsager)){
+        return false;
+    }
+
+    $idUsager = get_idUsager($nomUsager);
+    if($idUsager === false){
+        return false;
+    }
+    
+    $sql = "select id_usager from article where id = ?";
+
+    try {
+        $pdo = get_pdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idArticle]);
+        $retour = $stmt->fetch();
+        
+        if ($retour == false || !isset($retour['id_usager'])) {
+            consoleLog("Aucun article avec id: " . $idArticle);
+            return false;
+        }
+
+        if ($retour['id_usager'] != $idUsager) {
+            consoleLog("L'utilisateur n'a pas la permission de supprimer l'article id: " . $idArticle);
+            return false;
+        } else{
+            return true;
+        }
+    } catch (Exception $e) {
+        $retour = false;
+    }
+    return $retour;
+}

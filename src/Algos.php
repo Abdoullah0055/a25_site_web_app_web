@@ -1,6 +1,6 @@
 <?php
 
-function creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication, $estAdmin)
+function creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication, $peutSupprimer, $idArticle)
 {
     echo '
         <div class="bg-anthracite rounded-xl shadow hover:shadow-xl transition overflow-hidden">
@@ -22,9 +22,12 @@ function creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, 
                     Contacter ' . $vendeur . '
                 </button>
                 
-                <button class="mt-2 w-full bg-red-600 text-light py-2 rounded hover:bg-red-800 transition ' . ($estAdmin ? '' : 'hidden') . '">
-                    Supprimer article
-                </button>
+                <form action="include/supprimerArticle.php" method="POST">
+                    <input type="hidden" name="idArticle" value="' . $idArticle . '">
+                    <button class="btnDeleteArticle mt-2 w-full bg-red-600 text-light py-2 rounded hover:bg-red-800 transition ' . ($peutSupprimer ? '' : 'hidden') . '">
+                        Supprimer article
+                    </button>
+                </form>
             </div>
         </div>';
 }

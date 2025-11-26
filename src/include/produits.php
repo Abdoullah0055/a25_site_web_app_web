@@ -6,7 +6,7 @@
         <?php
         include "Algos.php";
         include "AlgosBD.php";
-
+    
         // Récupérer les annonces depuis la BD
 
         $pdo = get_pdo();
@@ -19,11 +19,12 @@
             die("Erreur lors de la récupération des articles.");
         }
 
-        if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
-            $idUsagerConnecte = get_idUsager($_SESSION['nom']);
+        $estAdmin = false;
+        $nomUsagerConnecte = $_SESSION['nom'] ?? null;
+
+        if(isset($_SESSION['connected']) && $_SESSION['connected'] === true && $nomUsagerConnecte !== null){
+            $idUsagerConnecte = get_idUsager($nomUsagerConnecte);
             $estAdmin = get_estAdmin($idUsagerConnecte);
-        } else {
-            $estAdmin = false;
         }
 
         foreach ($articles as $article) {
@@ -34,9 +35,16 @@
             $image = htmlspecialchars($article['chemin_image']);
             $datePublication = htmlspecialchars($article['date_pub']);
             $vendeur = get_nomUsager($article["id_usager"]);
+            $idArticle = $article['id'];
+
+            //son annonce?
+            $estProprietaire = $vendeur === $nomUsagerConnecte;
+
+            //peut supprimer
+            $peutSupprimer = $estAdmin || $estProprietaire;
 
             //Créer postes
-            creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication, $estAdmin);
+            creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication, $peutSupprimer, $idArticle);
         }
         ?>
 

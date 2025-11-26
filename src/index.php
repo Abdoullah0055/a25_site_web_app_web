@@ -14,7 +14,7 @@ echo '</pre>';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abdou's Market</title>
+  <title>Abdou's Marketttt</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <?php
   $theme = $_COOKIE['theme'] ?? 'clair';

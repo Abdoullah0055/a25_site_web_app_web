@@ -145,10 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ajoutReussi = ajouter_Article($idCat, $vendeur, $titre, $description, $prix, $negociable, $image, $dt);
 
     if (!empty($ajoutReussi)) {
-        echo "<p style='color: green; font-size: 20px; text-align: center; margin-top: 20px;'>
-            Article ajouté avec succès! 🎉 Redirection en cours...
-          </p>";
-        header("refresh:3;url=../index.php");
+        header("Location: ../index.php");
         exit();
     } else {
         die("Erreur lors de l'ajout de l'article.");
