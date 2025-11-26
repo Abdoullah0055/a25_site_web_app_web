@@ -141,7 +141,7 @@ function inscrireUsager($nom, $mdp)
         $stmt->execute([$nom]);
         $retour = $stmt->fetch();
 
-        if ($retour || isset($retour['pseudo'])) {
+        if ($retour !== false && isset($retour['pseudo'])) {
             consoleLog("Utilisateur déjà existant: " . $retour['pseudo']);
             return false;
         }
@@ -157,6 +157,28 @@ function inscrireUsager($nom, $mdp)
     return $retour;
 }
 
-function consoleLog($message){
+function consoleLog($message)
+{
     echo "<script>console.log('PHP: " . $message . "');</script>";
+}
+
+function get_estAdmin($idUser)
+{
+    $sql = "select estAdmin from usager where id = ?";
+
+    try {
+        $pdo = get_pdo();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idUser]);
+        $retour = $stmt->fetch();
+        if ($retour !== false && isset($retour['estAdmin'])) {
+            $retour = $retour['estAdmin'] == 1 ? true : false;
+        } else {
+            consoleLog("Aucun usager avec id: " . $idUser);
+            return false;
+        }
+    } catch (Exception $e) {
+        $retour = false;
+    }
+    return $retour;
 }

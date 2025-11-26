@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-function creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication){
+function creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication, $estAdmin)
+{
     echo '
         <div class="bg-anthracite rounded-xl shadow hover:shadow-xl transition overflow-hidden">
             <img src="' . $image . '" alt="' . $titre . '" class="w-full h-48 object-cover">
@@ -20,7 +21,10 @@ function creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, 
                 <button class="mt-4 w-full bg-silver text-blacklux py-2 rounded hover:bg-anthracite hover:text-light transition">
                     Contacter ' . $vendeur . '
                 </button>
+                
+                <button class="mt-2 w-full bg-red-600 text-light py-2 rounded hover:bg-red-800 transition ' . ($estAdmin ? '' : 'hidden') . '">
+                    Supprimer article
+                </button>
             </div>
         </div>';
 }
-?>

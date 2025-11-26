@@ -54,7 +54,7 @@ button:hover {
 /* Sections principales */
 section {
     padding: 2rem 0;
-    background-color: var(--fond);
+    /* background-color: var(--fond); */
 }
 
 section .group,

@@ -19,6 +19,13 @@
             die("Erreur lors de la récupération des articles.");
         }
 
+        if (isset($_SESSION['connected']) && $_SESSION['connected'] === true) {
+            $idUsagerConnecte = get_idUsager($_SESSION['nom']);
+            $estAdmin = get_estAdmin($idUsagerConnecte);
+        } else {
+            $estAdmin = false;
+        }
+
         foreach ($articles as $article) {
             $titre = htmlspecialchars($article['titre']);
             $description = htmlspecialchars($article['description']);
@@ -29,7 +36,7 @@
             $vendeur = get_nomUsager($article["id_usager"]);
 
             //Créer postes
-            creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication);
+            creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication, $estAdmin);
         }
         ?>
 
