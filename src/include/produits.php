@@ -6,7 +6,7 @@
         <?php
         include "Algos.php";
         include "AlgosBD.php";
-    
+
         // Récupérer les annonces depuis la BD
 
         $pdo = get_pdo();
@@ -22,7 +22,7 @@
         $estAdmin = false;
         $nomUsagerConnecte = $_SESSION['nom'] ?? null;
 
-        if(isset($_SESSION['connected']) && $_SESSION['connected'] === true && $nomUsagerConnecte !== null){
+        if (isset($_SESSION['connected']) && $_SESSION['connected'] === true && $nomUsagerConnecte !== null) {
             $idUsagerConnecte = get_idUsager($nomUsagerConnecte);
             $estAdmin = get_estAdmin($idUsagerConnecte);
         }

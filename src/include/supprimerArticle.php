@@ -2,7 +2,7 @@
 session_start();
 require '../AlgosBD.php';
 
-if(isset($_POST['idArticle'])){
+if (isset($_POST['idArticle'])) {
     $idArticle = $_POST['idArticle'];
 
     //Verifier autorisation de supprimer l'article
@@ -23,4 +23,3 @@ if(isset($_POST['idArticle'])){
         die("Vous n'êtes pas autorisé à supprimer cet article.");
     }
 }
-?>
