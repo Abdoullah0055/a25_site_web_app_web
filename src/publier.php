@@ -1,5 +1,14 @@
 <?php
 session_start();
+require_once 'Algos.php';
+
+if (!getEtatConnexion()) {
+    echo '<div class="divRefus echec"><strong>Accès refusé. Veuillez vous connecter.</strong></div>';
+    echo '<p>Redirection vers la page de connexion...</p>';
+    header('Refresh: 3; URL=login.php');
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">

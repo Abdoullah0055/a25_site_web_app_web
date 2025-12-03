@@ -32,17 +32,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //Vérification catégorie
         if (isset($_POST["categorie"])) {
             switch ($_POST["categorie"]) {
-                case "vehicules":
+                case "Véhicules":
                     $idCat = 1;
                     break;
-                case "electroniques":
+                case "Électroniques":
                     $idCat = 2;
                     break;
-                case "meubles":
+                case "Meubles":
                     $idCat = 3;
                     break;
-                case "autres":
+                case "Autres":
                     $idCat = 4;
+                    break;
+                case "Restaurant":
+                    $idCat = 5;
+                    break;
+                case "Gratuit":
+                    $idCat = 6;
                     break;
                 default:
                     die("Erreur: Catégorie invalide.");
@@ -62,7 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         date_default_timezone_set("America/Montreal");
         $dt = date('Y-m-d H:i:s');
 
-
         //Autres erreurs que pas de fichier téléversé
         if (isset($_FILES['fichier']) && $_FILES['fichier']['error'] !== UPLOAD_ERR_OK && $_FILES['fichier']['error'] !== UPLOAD_ERR_NO_FILE) {
             die("Erreur lors du transfert du fichier (Code: " . $_FILES['fichier']['error'] . ")");
@@ -75,10 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             //Image téléversé
             $cheminAbsolue = __DIR__ . '/../../imagesUpload/';
-
-            if (!is_dir($cheminAbsolue)) {
-                mkdir($cheminAbsolue, 0755, true);
-            }
 
             if (!isset($_FILES['fichier'])) {
                 die("Erreur: Aucun fichier téléversé.");

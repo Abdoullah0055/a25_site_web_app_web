@@ -32,10 +32,15 @@
                 <select id="categorie" name="categorie" required
                     class="w-full p-3 rounded border focus:outline-none focus:ring-2">
                     <option value="">-- Sélectionnez une catégorie --</option>
-                    <option value="vehicules">Véhicules</option>
-                    <option value="electroniques">Électroniques</option>
-                    <option value="meubles">Meubles</option>
-                    <option value="autres">Autres</option>
+                    <!-- Ajouter les catégories dynamiquement -->
+                    <?php
+                        require_once "AlgosBD.php";
+                        // Options de catégorie
+                        $categories = get_nomCategories();
+                        foreach ($categories as $cat) {
+                            echo "<option value='$cat'>$cat</option>";
+                        }
+                    ?>
                 </select>
             </div>
         </div>
@@ -56,7 +61,7 @@
         <!-- Téléversement d'image -->
         <div class="mb-6">
             <label for="fichier" class="block font-semibold mb-2">Image de l'article</label>
-            <input type="file" id="fichier" name="fichier"  required
+            <input type="file" id="fichier" name="fichier" 
                 class="w-full p-3 rounded border focus:outline-none focus:ring-2">
         </div>
 

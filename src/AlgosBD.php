@@ -48,20 +48,58 @@ function ajouter_Article($categorie, $usager, $titre, $description, $prix, $nego
 // ----------------------------------------------------------------------------
 // Retourne tous les articles ou false.
 // ----------------------------------------------------------------------------
-function obtenir_articles()
+function obtenir_articles($categorie)
 {
-    $sql = "select * from article order by date_pub desc;";
+    $pdo = get_pdo();
+    if ($pdo === false) {
+        consoleLog('AlgosBD.php: etape 0');
+        return false;
+    }
 
     try {
-        $pdo = get_pdo();
-        $stmt = $pdo->query($sql);
-        $retour = $stmt;
+        if ($categorie == 'toutes') {
+            consoleLog('AlgosBD.php: etape 1');
+            $sql = "select * from article order by date_pub desc;";
+            $stmt = $pdo->query($sql);
+        } else {
+            if (!get_categorieValide($categorie)) {
+                consoleLog('AlgosBD.php: etape 2');
+                consoleLog("Catégorie invalide: " . $categorie);
+                return false;
+            } else {
+                consoleLog('Catégorie valide');
+            }
+
+            $sql = "select * from article where id_categorie = ? order by date_pub desc;";
+            $stmt = $pdo->prepare($sql);
+
+            $idCat = get_idCategorie($categorie);
+            if (!$idCat) {
+                consoleLog('AlgosBD.php: id catégorie invalide');
+                return false;
+            }
+
+            if (!$idCat) {
+
+                consoleLog('AlgosBD.php: etape 5.1');
+                return false;
+            }
+            $stmt->execute([$idCat]);
+
+            consoleLog('AlgosBD.php: etape 6');
+        }
+        $retour = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        consoleLog('AlgosBD.php: etape 7');
     } catch (Exception $e) {
         //echo $e->getMessage();
         //exit;
-        $retour =  false;
+
+        consoleLog('AlgosBD.php: etape catch 1');
+        $retour = false;
     }
 
+    consoleLog('AlgosBD.php: etape 8');
     return $retour;
 }
 
@@ -99,8 +137,6 @@ function get_nomUsager($id)
             consoleLog("Aucun usager avec id: " . $id);
             return false;
         }
-    } catch (Exception $e) {
-        $retour = false;
     } catch (Exception $e) {
         $retour = false;
     }
@@ -240,15 +276,75 @@ function get_validiteSuppressionArticle($idArticle, $nomUsager)
     return $retour;
 }
 
-function chercherArticle($nomArticle){
-    $sql = "select * from article where titre like %?% or where description like %?% order by date_pub desc";
+function chercherArticle($nomArticle)
+{
+    $pdo = get_pdo();
+    try {
+        $sql = "select * from article where titre like ? OR description like ? order by date_pub desc";
+        $stmt = $pdo->prepare($sql);
+        $param = ["%$nomArticle%", "%$nomArticle%"];
+        $stmt->execute($param);
+
+        $retour = $stmt;
+    } catch (Exception $e) {
+        $retour = false;
+    }
+    return $retour;
+}
+
+function get_idCategorie($nomCategorie)
+{
+    $sql = "select id from categorie where titre = ?";
+    try {
+        $pdo = get_pdo();
+        consoleLog("etape a");
+        $stmt = $pdo->prepare($sql);
+
+        consoleLog("etape b");
+        $stmt->execute([$nomCategorie]);
+
+        consoleLog("etape c");
+        $retour = $stmt->fetch();
+        consoleLog("etape d");
+        if ($retour && isset($retour['id'])) {
+            $retour =  $retour['id'];
+
+            consoleLog("etape e");
+        } else {
+
+            consoleLog("etape f");
+            consoleLog("Aucun id catégorie avec nom: " . $nomCategorie);
+            return false;
+        }
+    } catch (Exception $e) {
+
+        consoleLog("etape g");
+        $retour = false;
+    }
+
+    consoleLog("etape h");
+    return $retour;
+}
+
+function get_categorieValide($nomCategorie)
+{
+    $catValides = ['Électroniques', 'Véhicules', 'Meubles', 'Restaurant', 'Gratuit', 'Autres'];
+    $nomCategorie = strtolower($nomCategorie);
+    if (in_array($nomCategorie, $catValides)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function get_nomCategories(){
+    $sql = "select titre from categorie";
     try{
         $pdo = get_pdo();
-        $stmnt = $pdo->prepare($sql);
-        $stmnt->execute([$nomArticle, $nomArticle]);
-        $retour = $stmnt;
-    } catch (Exception $e){
-        $retour = false;
-
+        $stmt = $pdo->query($sql);
+        $retour = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+        return $retour;
+    } catch (Exception $e) {
+        return false;
     }
 }

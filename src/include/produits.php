@@ -4,8 +4,8 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
         <?php
-        include "Algos.php";
-        include "AlgosBD.php";
+        require_once "Algos.php";
+        require_once "AlgosBD.php";
 
         // Récupérer les annonces depuis la BD
 
@@ -14,8 +14,18 @@
             die("Erreur de connexion à la base de données.");
         }
 
-        $articles = obtenir_articles();
+        $categorie = $_GET['categorie'] ?? 'toutes';
+
+        if ($categorie !== 'toutes') {
+            if (get_categorieValide($categorie))
+                $categorie = htmlspecialchars($categorie);
+            else
+                $categorie = 'toutes';
+        }
+
+        $articles = obtenir_articles($categorie);
         if ($articles === false) {
+            consoleLog("Erreur lors de la récupération des articles pour la catégorie: " . $categorie);
             die("Erreur lors de la récupération des articles.");
         }
 
@@ -27,7 +37,13 @@
             $estAdmin = get_estAdmin($idUsagerConnecte);
         }
 
+        //Si catégorie = toutes, afficher 10 derniers articles
+        $index = 0;
+        $maxArticles = 10;
         foreach ($articles as $article) {
+            if ($categorie === 'toutes' && $index >= $maxArticles) {
+                break;
+            }
             $titre = htmlspecialchars($article['titre']);
             $description = htmlspecialchars($article['description']);
             $prix = htmlspecialchars($article['prix']);
@@ -45,6 +61,7 @@
 
             //Créer postes
             creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, $datePublication, $peutSupprimer, $idArticle);
+            $index++;
         }
         ?>
 

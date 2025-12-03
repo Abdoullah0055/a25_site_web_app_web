@@ -21,17 +21,27 @@ $connected = $_SESSION['connected'] ?? false;
   <a href="index.php" class="absolute left-1/2 -translate-x-1/2 hover:opacity-90 transition">
     <img src="<?= $texteSrc ?>" alt="Nom du site" class="h-[1.8rem] object-contain">
   </a>
+  <div class="flex items-center space-x-4">
+    <div class="flex items-center space-x-3 relative">
+      <!-- Barre de recherche cachée au départ -->
+      <input id="mini-search" type="text" placeholder="Rechercher..."
+        class="w-64 px-4 py-2 border border-gray-300 rounded bg-white shadow hidden">
 
-  <!-- Icones + bouton thème -->
-  <div class="flex items-center space-x-4 relative">
-    <a href="#" class="hover:opacity-80 transition">
-      <img src="images/icones/icone-loupe.png" alt="Recherche" class="w-6 h-6">
-    </a>
+      <!-- Icône loupe -->
+      <a id="logo-src" href="#" class="hover:opacity-80 transition">
+        <img src="images/icones/icone-loupe.png" class="w-8 h-8">
+      </a>
+
+      <!-- Icône publier -->
+      <a href="publier.php" class="hover:opacity-80 transition">
+        <img src="images/icones/icone-post.png" class="w-10 h-10">
+      </a>
+    </div>
 
     <!-- Profil -->
     <div class="relative">
       <button id="profile-btn" class="hover:opacity-80 transition focus:outline-none">
-        <img src="images/icones/icone-profile.png" alt="Profil" class="w-6 h-6 rounded-full">
+        <img src="images/icones/icone-profile.png" alt="Profil" class="w-9 h-9 rounded-full">
       </button>
 
       <!-- Mini-menu déroulant -->
@@ -43,13 +53,14 @@ $connected = $_SESSION['connected'] ?? false;
         <?php endif; ?>
       </div>
 
-
       <!-- Bouton thème -->
       <button id="theme-toggle" class="text-2xl" aria-label="Basculer thème">
         <?= $theme === 'clair' ? '🌙' : '☀️'; ?>
       </button>
     </div>
   </div>
+
+
 
 
   <script>
@@ -78,6 +89,21 @@ $connected = $_SESSION['connected'] ?? false;
     document.addEventListener('click', (e) => {
       if (!profileBtn.contains(e.target) && !profileMenu.contains(e.target)) {
         profileMenu.classList.add('hidden');
+      }
+    });
+    const logoSrc = document.getElementById('logo-src');
+    const miniSearch = document.getElementById('mini-search');
+
+    logoSrc.addEventListener('click', (e) => {
+      e.preventDefault();
+      miniSearch.classList.toggle('hidden');
+      miniSearch.focus(); // optionnel : focus sur l'input quand visible
+    });
+
+    // Fermer si clic en dehors
+    document.addEventListener('click', (e) => {
+      if (!logoSrc.contains(e.target) && !miniSearch.contains(e.target)) {
+        miniSearch.classList.add('hidden');
       }
     });
   </script>

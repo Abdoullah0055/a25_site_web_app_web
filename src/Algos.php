@@ -31,3 +31,9 @@ function creerPoste($titre, $description, $prix, $negociable, $image, $vendeur, 
             </div>
         </div>';
 }
+
+function getEtatConnexion(){
+    return isset($_SESSION['connected']) && $_SESSION['connected'] === true;
+}
+
+?>
