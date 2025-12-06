@@ -329,7 +329,6 @@ function get_idCategorie($nomCategorie)
 function get_categorieValide($nomCategorie)
 {
     $catValides = ['Électroniques', 'Véhicules', 'Meubles', 'Restaurant', 'Gratuit', 'Autres'];
-    $nomCategorie = strtolower($nomCategorie);
     if (in_array($nomCategorie, $catValides)) {
         return true;
     } else {
