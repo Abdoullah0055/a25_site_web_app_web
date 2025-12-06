@@ -21,6 +21,7 @@ function get_pdo()
         // echo "Connexion établie";
     } catch (\PDOException $e) {
         $pdo = false;
+        die("ERREUR PAS REUSSI A SE CONNECTER AU PDO");
         //throw new \PDOException($e->getMessage(), (int)$e->getCode());
     }
     return $pdo;
@@ -28,6 +29,7 @@ function get_pdo()
 
 function ajouter_Article($categorie, $usager, $titre, $description, $prix, $negociable, $chemin, $date): bool
 {
+    consoleLog("Ajout d'un article dans la BD...");
     $pdo = get_pdo();
     if ($pdo === false) {
         return false;
@@ -38,8 +40,10 @@ function ajouter_Article($categorie, $usager, $titre, $description, $prix, $nego
                     values(?, ?, ?, ?, ?, ?, ?, ?);";
         $stmt = $pdo->prepare($sqlInsert);
         $stmt->execute([$categorie, $usager, $titre, $description, $prix, $negociable, $chemin, $date]);
+        consoleLog("Article ajouté avec succès.");
     } catch (\PDOException $e) {
         echo 'Erreur, AlgosBD.php: ajouter_Article: ' . $e->getMessage();
+        consoleLog("Erreur lors de l'ajout de l'article.");
         return false;
     }
     return true;
@@ -59,7 +63,7 @@ function obtenir_articles($categorie)
     try {
         if ($categorie == 'toutes') {
             consoleLog('AlgosBD.php: etape 1');
-            $sql = "select * from article order by date_pub desc;";
+            $sql = "select * from article order by id desc;";
             $stmt = $pdo->query($sql);
         } else {
             if (!get_categorieValide($categorie)) {
@@ -336,9 +340,10 @@ function get_categorieValide($nomCategorie)
     }
 }
 
-function get_nomCategories(){
+function get_nomCategories()
+{
     $sql = "select titre from categorie";
-    try{
+    try {
         $pdo = get_pdo();
         $stmt = $pdo->query($sql);
         $retour = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);

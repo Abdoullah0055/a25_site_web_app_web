@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Date et heure actuelle
         date_default_timezone_set("America/Montreal");
-        $dt = date('Y-m-d H:i:s');
+        $dt = date('d-F-y H:i');
 
         //Autres erreurs que pas de fichier téléversé
         if (isset($_FILES['fichier']) && $_FILES['fichier']['error'] !== UPLOAD_ERR_OK && $_FILES['fichier']['error'] !== UPLOAD_ERR_NO_FILE) {
@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Erreur: Utilisateur non trouvé.");
     }
 
-
+    consoleLog("Paramètrs: Titre: $titre, Description: $description, Prix: $prix, Négociable: $negociable, Image: $image, Vendeur: $vendeur, Date: $dt, Catégorie ID: $idCat");
     //Appel de la fonction pour ajouter l'article
     $ajoutReussi = ajouter_Article($idCat, $vendeur, $titre, $description, $prix, $negociable, $image, $dt);
 
